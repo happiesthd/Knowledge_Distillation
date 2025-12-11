@@ -1,0 +1,27 @@
+teacher_model:
+  path: "../CPM_EXP_13.2"  
+
+student_model:
+  path: "google/gemma-2-2b-it"  
+
+dataset:
+  folder_path: "../cit_text_req_jsons"  
+  text_column: "text" 
+
+training:
+  output_dir: "./gemma-2b-distilled"
+  num_train_epochs: 3
+  per_device_train_batch_size: 1 
+  gradient_accumulation_steps: 8  
+  learning_rate: 5.0e-7
+  max_grad_norm: 1.0
+  logging_steps: 10
+  save_steps: 500
+  fp16: false 
+  bf16: true
+  optim: "adamw_torch" #"paged_adamw_32bit" -gives scaling error
+  max_seq_length: 8192 
+  
+distillation:
+  alpha: 0.5        # Balances soft (distill) and hard (student) loss. 0.5 is a good start.
+  temperature: 2.0  # Softens the teacher's predictions. 2-5 is a common range.
