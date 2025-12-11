@@ -5,7 +5,7 @@ student_model:
   path: "google/gemma-2-2b-it"  
 
 dataset:
-  folder_path: "../cit_text_req_jsons"  
+  folder_path: "../TEXT_JSONs"  #path to your json dataset folder
   text_column: "text" 
 
 training:
